@@ -16,7 +16,15 @@ app.set('views', path.join(__dirname, 'templates'))
 app.use(express.static(path.join(__dirname, 'templates')))
 
 app.get('/', (req, res) => {
-	res.render('loginPage')
+	res.render('landingPage')
+})
+
+app.get('/login', (req, res) => {
+	res.render('loginPage.ejs')
+})
+
+app.get('/signup', (req, res) => {
+	res.render('signupPage.ejs')
 })
 
 app.listen(PORT, async () => {
@@ -24,9 +32,10 @@ app.listen(PORT, async () => {
 	await mongoClient.connect();
     db = mongoClient.db(process.env.MONGO_DB_NAME);
     collec = db.collection(process.env.MONGO_COLLECTION);
-    const student={
-        name:"GH"
-    };
-    await collec.insertOne(student);
 	console.log("Server running.");
 });
+
+app.listen(PORT, () => {
+	console.log("Server running.")
+});
+
