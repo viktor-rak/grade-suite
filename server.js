@@ -14,7 +14,11 @@ app.get('/', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-	res.render('loginPage')
+	res.render('loginPage.ejs')
+})
+
+app.get('/signup', (req, res) => {
+	res.render('signupPage.ejs')
 })
 
 app.listen(PORT, () => {
