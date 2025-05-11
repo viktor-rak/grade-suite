@@ -1,9 +1,9 @@
+const {config}=require('dotenv');
+config();
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://finalProject335:finalProject@cmsc335db.hkjesih.mongodb.net/?retryWrites=true&w=majority&appName=CMSC335DB";
+const uri = "mongodb+srv://"+process.env.MONGO_DB_USERNAME+":"+process.env.MONGO_DB_PASSWORD+"@cmsc335db.hkjesih.mongodb.net/?retryWrites=true&w=majority&appName=CMSC335DB";
 let db;
 let collec;
-const dbName= "CMSC335DB";
-const collectionName="finalProjectDB";
 const express = require('express')
 const path = require('path')
 
@@ -22,7 +22,11 @@ app.get('/', (req, res) => {
 app.listen(PORT, async () => {
 	mongoClient = new MongoClient(uri);
 	await mongoClient.connect();
-    db = mongoClient.db(dbName);
-    collec = db.collection(collectionName);
+    db = mongoClient.db(process.env.MONGO_DB_NAME);
+    collec = db.collection(process.env.MONGO_COLLECTION);
+    const student={
+        name:"GH"
+    };
+    await collec.insertOne(student);
 	console.log("Server running.");
 });
