@@ -10,7 +10,7 @@ app.set('views', path.join(__dirname, 'templates'))
 app.use(express.static(path.join(__dirname, 'templates')))
 
 app.get('/', (req, res) => {
-	res.render('loginPage')
+	res.render('signupPage.ejs')
 })
 
 app.listen(PORT, () => {
