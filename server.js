@@ -10,6 +10,14 @@ app.set('views', path.join(__dirname, 'templates'))
 app.use(express.static(path.join(__dirname, 'templates')))
 
 app.get('/', (req, res) => {
+	res.render('landingPage')
+})
+
+app.get('/login', (req, res) => {
+	res.render('loginPage.ejs')
+})
+
+app.get('/signup', (req, res) => {
 	res.render('signupPage.ejs')
 })
 
