@@ -1,0 +1,29 @@
+.card-basic {
+    width: 500px;
+}
+
+.main-container{
+    background-color:slategrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position:absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
+}
+
+.input-same-line{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:absolute;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.button1{
+    width:100%;
+}

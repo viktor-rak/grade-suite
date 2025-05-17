@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Grade Suite Login</title>
+	<link rel="stylesheet" href="/styles.css">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+	<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+</head>
+<body>
+
+	<div class="main-container">
+		<form action="/signup" method="POST">
+		  <sl-card class="card-basic">
+			<h1>Signup Here</h1>
+			<div class="input-same-line">
+			  <sl-input name="firstName" placeholder="First Name" required></sl-input>
+			  <sl-input name="lastName"  placeholder="Last Name"  required></sl-input>
+			</div>
+			<br /><br /><br />
+			<sl-input name="email"    placeholder="Email"    required></sl-input>
+			<br />
+			<sl-input name="password" type="password" placeholder="Password" required></sl-input>
+			<br />
+			<sl-button type="submit" class="button1">Create Account</sl-button>
+		  </sl-card>
+		</form>
+	  </div>
+
+
+</body>
+</html>
