@@ -10,14 +10,15 @@
 <body>
 
 	<div class = "main-container">
-
+		<form action="/login" method="post">
 		<sl-card class="card-basic">
 			<h1>Login Here</h1>
-			<sl-input placeholder="Email"></sl-input>
+			<sl-input placeholder="Email" name="email"></sl-input>
 			<br />
-			<sl-input t placeholder="Password"></sl-input>
+			<sl-input type="password" placeholder="Password" name="pwd" password-toggle></sl-input>
             <br />
-            <sl-button class="button1">Login</sl-button>
+            <sl-button class="button1" type="submit">Login</sl-button>
+			<%- errorMessage%>
 		</sl-card>
 	</div>
 
