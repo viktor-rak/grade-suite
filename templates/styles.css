@@ -1,5 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+  }
+
 .card-basic {
+    background-color: #fff;
+    color: slategrey;
     width: 500px;
+    font-size: 16px;
 }
 
 .main-container{
@@ -25,5 +34,8 @@
 }
 
 .button1{
+    font-size: 16px;
+    color: #fff;
+    background-color: #99caff;
     width:100%;
 }
