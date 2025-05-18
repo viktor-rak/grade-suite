@@ -1,7 +1,7 @@
 # grade-suite
 
 <strong>Submitted by:</strong> Name Here (directory id: [put it here]) <br>
-<strong>Group Members:</strong>: Viktor Rakov (vrakov), Josephine Rakow (jrakow?), Zile Liu (lzl20030312) <br>
+<strong>Group Members:</strong>: Viktor Rakov (vrakov), Josephine Rakow (jrakow?), Zile Liu (zliu2003) <br>
 <strong>App Description:</strong> Allow the user to input grade data, calculate GPA, and more features to come. <br>
 <strong>Youtube Video Link:</strong> link here <br>
 <strong>APIs:</strong> API 1 (link), API 2 (here) <br>
