@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-	res.render('loginPage.ejs')
+	res.render('loginPage.ejs',{errorMessage:""})
 })
 
 app.get('/signup', (req, res) => {
@@ -45,6 +45,20 @@ app.post('/signupResponse', async (req, res) => {
 	else{
 		res.render('signupResponsePage.ejs',{message:" Your email is already registered in our database, please login in via your credential"})
 	}
+})
+app.post('/login', async (req, res) => {
+	const email=req.body.email
+	const pwd=req.body.pwd
+	const result=await collec.find({email:email, pwd:pwd}).toArray();
+	if (result.length===0){
+		return res.render('loginPage.ejs',{errorMessage:"<br/><br/>Not yet registered or password is incorrect" })
+	}
+	else{
+		res.redirect("/dashboard")
+	}
+})
+app.get('/dashboard', async (req, res) => {
+	res.render('dashboard.ejs',{})
 })
 app.listen(PORT, async () => {
 	mongoClient = new MongoClient(uri);
