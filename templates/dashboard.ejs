@@ -40,6 +40,7 @@
 
                     <div class = "format-right">
                         Class Code: <sl-input name = "class_code" pattern = "[A-Z]{4}[0-9]{3}"></sl-input>
+                        Credits: <sl-input name = "credits" pattern = "[1234]"></sl-input>
                         Final Grade: <sl-input name = "grade" pattern = "[ABCDEF]"></sl-input>
                         <input type="hidden" name="email" id="mongo_email">
                         <sl-button size="medium" type = "submit">Input Grade</sl-button>
@@ -47,13 +48,14 @@
                     <sl-divider style="--width: 4px;"></sl-divider>
                 </form>
 
-                <div class="mutation-child-list">
-                <sl-mutation-observer child-list>
-                    <div class="buttons">
-                    <sl-button variant="primary">Display Grades</sl-button>
-                    </div>
-                </sl-mutation-observer>
-
+                 <form action="/display1" method="post">
+                     <div class="mutation-child-list">
+                    <sl-mutation-observer child-list>
+                        <div class="buttons">
+                        <sl-button variant="primary">Display Grades</sl-button>
+                        </div>
+                    </sl-mutation-observer>
+                 </form>
 
             </sl-tab-panel>
             <sl-tab-panel name="custom">idk man</sl-tab-panel>
