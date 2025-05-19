@@ -7,6 +7,7 @@ let collec;
 const express = require('express')
 const path = require('path');
 const { userInfo } = require('os');
+let global_email = "sgfdh";
 
 const app = express()
 const PORT = 8000;
@@ -33,11 +34,15 @@ app.post('/signupResponse', async (req, res) => {
 	const firstname=req.body.firstname
 	const email=req.body.email
 	const pwd=req.body.pwd
+	const grade_data = new Array();
+	const gpa = 0;
 	const entry={
 		firstname:firstname,
 		lastname:lastname,
 		email:email,
-		pwd:pwd
+		pwd:pwd,
+		gpa: gpa,
+		grade_data: grade_data,
 	}
 	const result=await collec.find({email:email}).toArray();
 	if (result.length===0){
@@ -123,33 +128,79 @@ app.post('/display', async (req, res) => {
 
 })
 
-
 app.post('/dashboard', async (req, res) => {
 	const email = req.body.email;
+
 	const semester = req.body.semester;
+	const year = req.body.year;
+	const class_code = req.body.class_code;
+	const credits = req.body.credits;
+	const grade = req.body.grade;
 
-	let grade = "";
-	let class_code = "";
-	let year = "";
+	let obj = {
+		semester: semester,
+		year: year,
+		class_code: class_code,
+		credits: credits,
+		grade: grade,
+	}
 
-	grade = req.body.grade;
-	class_code = req.body.class_code;
-	year = req.body.year;
+	let client = new MongoClient(uri);
 
-	if(!isNaN(Number(year))){
+	try {
+
+        let result = await collec.findOne({email: email});
+		let curr_arr = result.grade_data;
+		console.log(result.grade_data.length);
+
+		collec.findOneAndUpdate({email: email}, {$set: {grade_data: [...curr_arr,obj]}},  function(err,doc) {
+       if (err) { throw err; }
+       else { console.log("Updated"); }
+     });  
 		
-	}
+     } catch (e) {
+        console.error(e);
+     } finally {
+        await client.close();
+     }
 
-	table = `<div>${semester}<br>
-	${year}<br>
-	${class_code}<br>
-	${grade}
-	</div>`
+})
 
-	let info = {
-		display : table,
-	}
-	res.render('dashboard.ejs',info)
+app.post('/display', async (req, res) => {
+
+	const email = global_email;
+	let client = new MongoClient(uri);
+
+	try {
+		console.log(global_email);
+		const result = await collec.findOne({email: email});
+
+		const grade_data = result.grade_data;
+
+		let data_to_display = `<div>`;
+
+		grade_data.forEach(element => {
+			data_to_display += `<h3>Semester: ${element.semester} ${element.year}</h3><br>`
+			let table = "<table  border= 1><tr><th>Class</th><th>Credits</th><th>Grade</th></tr>";
+			table += "<tr><td>" + element.class_code + "</td>";
+			table += "<td>" + element.credits + "</td>"+ "<td>"+element.grade +"</td>" +"</tr>";
+			table += "</table>";
+			data_to_display += table + `<br><br>`;
+		});
+
+		data_to_display += `</div>`;
+
+		let info = {
+			display : data_to_display,
+		}
+		res.render('dashboard.ejs',info)
+		
+     } catch (e) {
+        console.error(e);
+     } finally {
+        await client.close();
+     }
+
 })
 
 app.get('/dashboard', async (req, res) => {
