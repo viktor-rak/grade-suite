@@ -11,33 +11,53 @@
 
 	<div class = "main-container">
         <div class = "dashboard-page">
-            <form action="/dashboard" method="post">
+           
+            <sl-tab-group>
+            <sl-tab slot="nav" panel="general">Enter Grades</sl-tab>
+            <sl-tab slot="nav" panel="custom">Estimate Grades</sl-tab>
+   
 
-                <div class = "format-right">
-                    <h3>Enter Your Grade Information:</h3>
-                </div>
+            <sl-tab-panel name="general">
+                
+                 <form action="/dashboard" method="post">
 
-                <div class = "format-right">
+                    <div class = "format-right">
+                        <h3>Enter Your Grade Information:</h3>
+                    </div>
 
-                    Semester:<sl-select name = "semester">
-                    <sl-option value="Fall">Fall</sl-option>
-                    <sl-option value="Spring">Spring</sl-option>
-                    <sl-option value="Summer">Summer</sl-option>
-                    </sl-select>
+                    <div class = "format-right">
 
-                    Year:<sl-input name = "year" pattern = " *19[0-9][0-9]|201[1-9]|202[0-5]"></sl-input>
+                        Semester:<sl-select name = "semester">
+                        <sl-option value="Fall">Fall</sl-option>
+                        <sl-option value="Spring">Spring</sl-option>
+                        <sl-option value="Summer">Summer</sl-option>
+                        </sl-select>
+
+                        Year:<sl-input name = "year" pattern = " *19[0-9][0-9]|201[1-9]|202[0-5]"></sl-input>
 
 
-                </div><br>
+                    </div><br>
 
-                <div class = "format-right">
-                    Class Code: <sl-input name = "class_code" pattern = "[A-Z]{4}[0-9]{3}"></sl-input>
-                    Final Grade: <sl-input name = "grade" pattern = "[ABCDEF]"></sl-input>
-                    <sl-button size="medium" type = "submit">Input Grade</sl-button>
-                </div>
-                <sl-divider style="--width: 4px;"></sl-divider>
-            </form>
-            <br>
+                    <div class = "format-right">
+                        Class Code: <sl-input name = "class_code" pattern = "[A-Z]{4}[0-9]{3}"></sl-input>
+                        Final Grade: <sl-input name = "grade" pattern = "[ABCDEF]"></sl-input>
+                        <sl-button size="medium" type = "submit">Input Grade</sl-button>
+                    </div>
+                    <sl-divider style="--width: 4px;"></sl-divider>
+                </form>
+
+                <div class="mutation-child-list">
+                <sl-mutation-observer child-list>
+                    <div class="buttons">
+                    <sl-button variant="primary">Display Grades</sl-button>
+                    </div>
+                </sl-mutation-observer>
+
+
+            </sl-tab-panel>
+            <sl-tab-panel name="custom">idk man</sl-tab-panel>
+
+            </sl-tab-group>
             <%- display %>
 	    </div>
 	</div>
