@@ -57,9 +57,41 @@ app.post('/login', async (req, res) => {
 		res.redirect("/dashboard")
 	}
 })
-app.get('/dashboard', async (req, res) => {
-	res.render('dashboard.ejs',{})
+app.post('/dashboard', async (req, res) => {
+	const semester = req.body.semester;
+
+	let grade = "";
+	let class_code = "";
+	let year = "";
+
+	grade = req.body.grade;
+	class_code = req.body.class_code;
+	year = req.body.year;
+
+	if(!isNaN(Number(year))){
+		
+	}
+
+	table = `<div>${semester}<br>
+	${year}<br>
+	${class_code}<br>
+	${grade}
+	</div>`
+
+	let info = {
+		display : table,
+	}
+
+	res.render('dashboard.ejs',info)
 })
+
+app.get('/dashboard', async (req, res) => {
+	let info = {
+		display : "<div></div>",
+	}
+	res.render('dashboard.ejs',info)
+})
+
 app.listen(PORT, async () => {
 	mongoClient = new MongoClient(uri);
 	await mongoClient.connect();
