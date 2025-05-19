@@ -48,32 +48,20 @@
                 </form>
 
 
-            <form action="/display1" method="post">
+            <form action="/display" method="post">
                 <div class="mutation-child-list">
                     <sl-mutation-observer child-list>
                         <div class="buttons">
-                            <sl-button variant="primary">Display Grades</sl-button>
+                            <sl-button variant="primary" type="submit">Display Grades</sl-button>
                         </div>
                     </sl-mutation-observer>
                 </div>
             </form>
-            
-            <sl-tab-panel name="custom">
-                <p>custom</p>
-                <sl-button variant="primary">Calculate GPA</sl-button>
-            </sl-tab-panel>
+            <%- display %>
             </sl-tab-panel>
             <sl-tab-panel name="custom">
                 <sl-button variant="primary" id="calc">Calculate GPA</sl-button>
                 <p id="gpa-result">GPA: --</p>
-                 <form action="/display" method="post" id = "form2">
-                    <sl-mutation-observer child-list>
-                        <div class="buttons">
-                        <sl-button variant="primary" type = "submit">Display Grades</sl-button>
-                        </div>
-                    </sl-mutation-observer>
-                 </form>
-                 <%- display %>
             </sl-tab-panel>
 
             </sl-tab-group>
