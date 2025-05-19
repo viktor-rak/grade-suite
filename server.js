@@ -25,9 +25,9 @@ app.get('/login', (req, res) => {
 	res.render('loginPage.ejs',{errorMessage:""})
 })
 
-app.get('/signup', (req, res) => {
-	res.render('signupPage.ejs')
-})
+const signupRouter = require('./signup.js');
+app.use('/', signupRouter);
+
 app.post('/signupResponse', async (req, res) => {
 	const lastname=req.body.lastname
 	const firstname=req.body.firstname
