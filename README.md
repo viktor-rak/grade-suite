@@ -1,6 +1,6 @@
 # grade-suite
 
-<strong>Submitted by:</strong> Viktor Rakov (vrakov)
+<strong>Submitted by:</strong> Viktor Rakov (vrakov) <br>
 <strong>Group Members:</strong>: Viktor Rakov (vrakov), Josephine Rakow (jrakow), Zile Liu (zliu2003), Ryan Henrikson (henriksonr) <br>
 <strong>App Description:</strong> Allow the user to input grade data, calculate GPA, and compare their overall gpa to the average gpa of Nelson's 335 class. 
 Grade data for each user is stored alongside thier username and password in a database. <br>
