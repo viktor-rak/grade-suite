@@ -57,11 +57,22 @@
                     </sl-mutation-observer>
                 </div>
             </form>
-            <%- display %>
+            <%- display %><br> 
             </sl-tab-panel>
             <sl-tab-panel name="custom">
                 <sl-button variant="primary" id="calc">Calculate GPA</sl-button>
                 <p id="gpa-result">GPA: --</p>
+
+                <form action="/compare" method="post">
+                <div class="mutation-child-list">
+                    <sl-mutation-observer child-list>
+                        <div class="buttons">
+                            <sl-button variant="primary" type="submit">Compare GPA</sl-button>
+                        </div>
+                    </sl-mutation-observer>
+                </div><br><br>  <%- words %>
+            </form>
+
             </sl-tab-panel>
 
             </sl-tab-group>
