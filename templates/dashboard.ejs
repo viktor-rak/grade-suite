@@ -63,15 +63,14 @@
                 <sl-button variant="primary" id="calc">Calculate GPA</sl-button>
                 <p id="gpa-result">GPA: --</p>
 
-                <form action="/compare" method="post">
                 <div class="mutation-child-list">
-                    <sl-mutation-observer child-list>
-                        <div class="buttons">
-                            <sl-button variant="primary" type="submit">Compare GPA</sl-button>
-                        </div>
-                    </sl-mutation-observer>
-                </div><br><br>  <%- words %>
-            </form>
+                <sl-mutation-observer child-list>
+                <div class="buttons">
+                <sl-button variant="primary" id="compare-gpa-btn">Compare GPA</sl-button>
+                </div>
+                </sl-mutation-observer>
+                </div>
+                <p id="compare-result">--</p>
 
             </sl-tab-panel>
 
@@ -79,6 +78,20 @@
 	    </div>
 	</div>
     <script>
+        document.getElementById("compare-gpa-btn").addEventListener("click", async () => {
+                try {
+                    const res = await fetch("/compare", {
+                        method: "POST"
+                    });
+                    const data = await res.json();
+                    document.getElementById("compare-result").innerHTML = data.message;
+                } catch (err) {
+                    console.error("Compare GPA failed", err);
+                    document.getElementById("compare-result").innerText = "An error occurred.";
+                }
+            });
+
+
         document.getElementById('calc').addEventListener("click", async () => {
             const email = localStorage.getItem("userEmail");
             if (!email) {
