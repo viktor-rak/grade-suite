@@ -22,6 +22,24 @@
 		</sl-card>
 		</form>
 	</div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("form").addEventListener("submit", store);
+      });
 
-</body>
+      function store(e) {
+        const emailInput = document.querySelector('sl-input[name="email"]');
+        if (emailInput) {
+          const nativeInput = emailInput.shadowRoot.querySelector('input'); //component gave me trouble
+          if (nativeInput) {
+            const email = nativeInput.value;
+            if (email) {
+              localStorage.setItem("userEmail", email);
+              console.log("Email saved:", email);
+            }
+          }
+        }
+      }
+    </script>
+  </body>
 </html>

@@ -5,7 +5,8 @@ const uri = "mongodb+srv://"+process.env.MONGO_DB_USERNAME+":"+process.env.MONGO
 let db;
 let collec;
 const express = require('express')
-const path = require('path')
+const path = require('path');
+const { userInfo } = require('os');
 
 const app = express()
 const PORT = 8000;
@@ -58,6 +59,7 @@ app.post('/login', async (req, res) => {
 	}
 })
 app.post('/dashboard', async (req, res) => {
+	const email = req.body.email;
 	const semester = req.body.semester;
 
 	let grade = "";
@@ -81,7 +83,6 @@ app.post('/dashboard', async (req, res) => {
 	let info = {
 		display : table,
 	}
-
 	res.render('dashboard.ejs',info)
 })
 
