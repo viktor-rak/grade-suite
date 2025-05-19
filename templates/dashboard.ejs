@@ -107,15 +107,6 @@
                     hiddenEmail1.value = savedEmail;
                 }
             });
-
-            const form2 = document.querySelector("#form2");
-            const hiddenEmail2 = document.getElementById("mongo_email");
-            form2.addEventListener("submit", () => {
-                const savedEmail = localStorage.getItem("userEmail");
-                if (savedEmail) {
-                    hiddenEmail2.value = savedEmail;
-                }
-            });
         });
     </script>
 </body>
