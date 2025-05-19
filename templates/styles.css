@@ -24,6 +24,24 @@ body {
     left:0px;
 }
 
+.dashboard-page{
+    background-color:white;
+    display: flex;
+    align-items:stretch;
+    justify-content:baseline;
+    flex-direction: column;
+    padding: 2rem;
+    height: 75rem;
+    width: 100rem;
+
+}
+
+.format-right{
+    display: flex;
+    justify-content:left;
+    gap: 30px;
+}
+
 .input-same-line{
     display: flex;
     align-items: center;

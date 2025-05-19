@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="/styles.css">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+	<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+</head>
+<body>
+
+	<div class = "main-container">
+        <div class = "dashboard-page">
+
+            <div class = "format-right">
+                <h3>Enter Your Grade Information:</h3>
+            </div>
+
+            <div class = "format-right">
+
+                Semester:<sl-select>
+                <sl-option value="Fall">Fall</sl-option>
+                <sl-option value="Spring">Spring</sl-option>
+                <sl-option value="Summer">Summer</sl-option>
+                </sl-select>
+
+                Year:<sl-input></sl-input>
+
+
+            </div><br>
+
+            <div class = "format-right">
+                Class Code: <sl-input></sl-input>
+                Final Grade: <sl-input></sl-input>
+                <sl-button size="medium">Input Grade</sl-button>
+            </div>
+            <sl-divider style="--width: 4px;"></sl-divider>
+	    </div>
+	</div>
+
+</body>
+</html>
