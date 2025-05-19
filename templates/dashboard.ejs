@@ -16,7 +16,6 @@
             <sl-tab slot="nav" panel="general">Enter Grades</sl-tab>
             <sl-tab slot="nav" panel="custom">Estimate Grades</sl-tab>
    
-
             <sl-tab-panel name="general">
                 
                  <form action="/dashboard" method="post">
@@ -48,23 +47,60 @@
                     <sl-divider style="--width: 4px;"></sl-divider>
                 </form>
 
-                 <form action="/display1" method="post">
-                     <div class="mutation-child-list">
+            <form action="/display1" method="post">
+                <div class="mutation-child-list">
                     <sl-mutation-observer child-list>
                         <div class="buttons">
-                        <sl-button variant="primary">Display Grades</sl-button>
+                            <sl-button variant="primary">Display Grades</sl-button>
                         </div>
                     </sl-mutation-observer>
-                 </form>
-
+                </div>
+            </form>
+            
+            <sl-tab-panel name="custom">
+                <p>custom</p>
+                <sl-button variant="primary">Calculate GPA</sl-button>
             </sl-tab-panel>
-            <sl-tab-panel name="custom">idk man</sl-tab-panel>
+            </sl-tab-panel>
+            <sl-tab-panel name="custom">
+                <sl-button variant="primary" id="calc">Calculate GPA</sl-button>
+                <p id="gpa-result">GPA: --</p>
+            </sl-tab-panel>
 
             </sl-tab-group>
             <%- display %>
 	    </div>
 	</div>
     <script>
+        document.getElementById('calc').addEventListener("click", async () => {
+            const email = localStorage.getItem("userEmail");
+            if (!email) {
+                console.error("Could not fetch your email. Try signing in again.");
+                return;
+            }
+            try {
+                const response = await fetch("/calculate", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Server error ${response.status}: ${errorText}`);
+                }
+
+                const data = await response.json();
+                console.log("GPA", data.gpa);
+                document.getElementById("gpa-result").textContent = `GPA: ${data.gpa}`;
+            } catch (err) {
+                console.error("Something went wrong with the calculation.", err);
+            }
+        });
+
+
         document.addEventListener("DOMContentLoaded", () => {
             const form = document.querySelector("form");
             const hiddenEmail = document.getElementById("mongo_email");

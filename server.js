@@ -12,7 +12,7 @@ const app = express()
 const PORT = 8000;
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'templates'))
-
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'templates')))
 
@@ -58,6 +58,32 @@ app.post('/login', async (req, res) => {
 		res.redirect("/dashboard")
 	}
 })
+
+app.post("/calculate", async (req, res) => {
+	const email = req.body.email;
+	if (!email) return res.status(400).json({ error: "Missing email" });
+
+	try {
+		const user = await collec.findOne({ email: email });
+		const grades = user?.grade_data || [];
+
+		const gradeMap = { A: 4, B: 3, C: 2, D: 1, F: 0 };
+		let totalPoints = 0, totalCredits = 0;
+		grades.forEach(g => {
+			const points = gradeMap[g.grade];
+			if (points !== undefined) {
+				totalPoints += points * Number(g.credits);
+				totalCredits += Number(g.credits);
+			}
+		});
+		const gpa = totalCredits > 0 ? (totalPoints / totalCredits).toFixed(2) : "N/A";
+		res.json({ gpa });
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({ error: "Internal server error" });
+	}
+});
+
 app.post('/dashboard', async (req, res) => {
 	const email = req.body.email;
 	const semester = req.body.semester;
