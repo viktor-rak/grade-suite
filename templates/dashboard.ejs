@@ -18,7 +18,7 @@
    
             <sl-tab-panel name="general">
                 
-                 <form action="/dashboard" method="post">
+                 <form action="/dashboard" method="post" id = "form1">
 
                     <div class = "format-right">
                         <h3>Enter Your Grade Information:</h3>
@@ -47,6 +47,7 @@
                     <sl-divider style="--width: 4px;"></sl-divider>
                 </form>
 
+
             <form action="/display1" method="post">
                 <div class="mutation-child-list">
                     <sl-mutation-observer child-list>
@@ -65,10 +66,17 @@
             <sl-tab-panel name="custom">
                 <sl-button variant="primary" id="calc">Calculate GPA</sl-button>
                 <p id="gpa-result">GPA: --</p>
+                 <form action="/display" method="post" id = "form2">
+                    <sl-mutation-observer child-list>
+                        <div class="buttons">
+                        <sl-button variant="primary" type = "submit">Display Grades</sl-button>
+                        </div>
+                    </sl-mutation-observer>
+                 </form>
+                 <%- display %>
             </sl-tab-panel>
 
             </sl-tab-group>
-            <%- display %>
 	    </div>
 	</div>
     <script>
@@ -102,13 +110,22 @@
 
 
         document.addEventListener("DOMContentLoaded", () => {
-            const form = document.querySelector("form");
-            const hiddenEmail = document.getElementById("mongo_email");
+            const form1 = document.querySelector("#form1");
+            const hiddenEmail1 = document.getElementById("mongo_email");
 
-            form.addEventListener("submit", () => {
+            form1.addEventListener("submit", () => {
                 const savedEmail = localStorage.getItem("userEmail");
                 if (savedEmail) {
-                    hiddenEmail.value = savedEmail;
+                    hiddenEmail1.value = savedEmail;
+                }
+            });
+
+            const form2 = document.querySelector("#form2");
+            const hiddenEmail2 = document.getElementById("mongo_email");
+            form2.addEventListener("submit", () => {
+                const savedEmail = localStorage.getItem("userEmail");
+                if (savedEmail) {
+                    hiddenEmail2.value = savedEmail;
                 }
             });
         });
